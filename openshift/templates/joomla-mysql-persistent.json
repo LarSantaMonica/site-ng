@@ -152,7 +152,7 @@
               "failurePolicy": "Retry",
               "execNewPod": {
                 "command": [
-                  "./migrate-database.sh"
+                  "./openshift/action_hooks/post_deploy"
                 ],
                 "containerName": "joomla-mysql-persistent"
               }
