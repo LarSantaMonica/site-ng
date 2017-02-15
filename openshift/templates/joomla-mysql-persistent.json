@@ -131,7 +131,7 @@
           }
         ],
         "postCommit": {
-          "script": "echo 'commit ok'"
+          "script": "./openshift/action_hooks/post_deploy"
         }
       }
     },
@@ -152,7 +152,7 @@
               "failurePolicy": "Retry",
               "execNewPod": {
                 "command": [
-                  "./openshift/action_hooks/post_deploy"
+                  "./openshift/action_hooks/build"
                 ],
                 "containerName": "joomla-mysql-persistent"
               }
