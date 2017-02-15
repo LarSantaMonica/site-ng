@@ -99,8 +99,8 @@
           "sourceStrategy": {
             "from": {
               "kind": "ImageStreamTag",
-              "namespace": "${NAMESPACE}",
-              "name": "php:7.0"
+              "namespace": "openshift",
+              "name": "php:5.6"
             },
             "env":  [
               {
@@ -457,7 +457,7 @@
       "displayName": "Namespace",
       "description": "The OpenShift Namespace where the ImageStream resides.",
       "required": true,
-      "value": "LarSantaMonica"
+      "value": "larsantamonica.org.br"
     },
     {
       "name": "MEMORY_LIMIT",
