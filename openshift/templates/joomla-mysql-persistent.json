@@ -471,7 +471,7 @@
       "displayName": "Memory Limit (MySQL)",
       "description": "Maximum amount of memory the MySQL container can use.",
       "required": true,
-      "value": "512Mi"
+      "value": "1Gi"
     },
     {
       "name": "VOLUME_CAPACITY",
@@ -490,7 +490,8 @@
     {
       "name": "SOURCE_REPOSITORY_REF",
       "displayName": "Git Reference",
-      "description": "Set this to a branch name, tag or other ref of your repository if you are not using the default branch."
+      "description": "Set this to a branch name, tag or other ref of your repository if you are not using the default branch.",
+      "value": "Joomla-CMS"
     },
     {
       "name": "CONTEXT_DIR",
