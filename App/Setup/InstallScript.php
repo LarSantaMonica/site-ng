@@ -24,14 +24,14 @@ class InstallScript
 		}
 
 		// Make sure the assets directory exists
-		if (!is_dir('www/assets'))
+		if (!is_dir('assets'))
 		{
-			mkdir('www/assets', 0755);
+			mkdir('assets', 0755);
 		}
 
 		// Symlink img
 		$bsImagePath = '../../vendor/twbs/bootstrap/docs/assets/img';
-		$imgAssetsPath = 'www/assets/img';
+		$imgAssetsPath = 'assets/img';
 
 		if (!file_exists($imgAssetsPath))
 		{
@@ -40,7 +40,7 @@ class InstallScript
 
 		// Symlink js
 		$bsJSPath = '../../vendor/twbs/bootstrap/docs/assets/js';
-		$jsAssetsPath = 'www/assets/js';
+		$jsAssetsPath = 'assets/js';
 
 		if (!file_exists($jsAssetsPath))
 		{
@@ -49,7 +49,7 @@ class InstallScript
 
 		// Symlink css
 		$bsCSSPath = '../../vendor/twbs/bootstrap/docs/assets/css';
-		$cssAssetsPath = 'www/assets/css';
+		$cssAssetsPath = 'assets/css';
 
 		if (!file_exists($cssAssetsPath))
 		{
