@@ -7,7 +7,11 @@
       "openshift.io/display-name": "Joomla + MySQL (Persistent)",
       "description": "An Joomla application with a MySQL database. For more information about using this template, including OpenShift considerations, see https://github.com/openshift/site-ng/blob/master/README.md.",
       "tags": "quickstart,php,joomla",
-      "iconClass": "icon-php"
+      "iconClass": "icon-php",
+      "template.openshift.io/long-description": "This template defines resources needed to develop a Joomla application, including a build configuration, application deployment configuration, and database deployment configuration.",
+      "template.openshift.io/provider-display-name": "Tecnologia no Social.",
+      "template.openshift.io/documentation-url": "https://github.com/larsantamonica/site-ng",
+      "template.openshift.io/support-url": "https://dev.larsantamonica.org.br"
     }
   },
   "message": "The following service(s) have been created in your project: ${NAME}, ${DATABASE_SERVICE_NAME}.\n\nFor more information about using this template, including OpenShift considerations, see https://github.com/LarSantaMonica/site-ng/blob/master/README.md.",
@@ -99,7 +103,7 @@
           "sourceStrategy": {
             "from": {
               "kind": "ImageStreamTag",
-              "namespace": "openshift",
+              "namespace": "${NAMESPACE}",
               "name": "php:5.6"
             },
             "env":  [
@@ -351,7 +355,7 @@
               "from": {
                 "kind": "ImageStreamTag",
                 "namespace": "${NAMESPACE}",
-                "name": "mysql:5.7"
+                "name": "mysql:latest."
               }
             }
           },
@@ -457,7 +461,7 @@
       "displayName": "Namespace",
       "description": "The OpenShift Namespace where the ImageStream resides.",
       "required": true,
-      "value": "larsantamonica.org.br"
+      "value": "openshift"
     },
     {
       "name": "MEMORY_LIMIT",
