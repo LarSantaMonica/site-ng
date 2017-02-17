@@ -1,0 +1,149 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    description: Defines how to deploy the application server
+    openshift.io/generated-by: OpenShiftNewApp
+  creationTimestamp: 2017-02-16T02:56:55Z
+  generation: 2
+  labels:
+    app: joomla-mysql-persistent
+    template: joomla-mysql-persistent
+  name: joomla-mysql-persistent
+  namespace: site-ng
+  resourceVersion: "876832981"
+  selfLink: /oapi/v1/namespaces/site-ng/deploymentconfigs/joomla-mysql-persistent
+  uid: 9379b051-f3f3-11e6-a1dd-0e63b9c1c48f
+spec:
+  replicas: 1
+  selector:
+    name: joomla-mysql-persistent
+  strategy:
+    recreateParams:
+      pre:
+        execNewPod:
+          command:
+          - ./openshift/action_hooks/build
+          containerName: joomla-mysql-persistent
+        failurePolicy: Retry
+      timeoutSeconds: 600
+    resources: {}
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+      creationTimestamp: null
+      labels:
+        app: joomla-mysql-persistent
+        name: joomla-mysql-persistent
+      name: joomla-mysql-persistent
+    spec:
+      containers:
+      - env:
+        - name: DATABASE_SERVICE_NAME
+          value: mysql
+        - name: DATABASE_ENGINE
+          value: mysql
+        - name: DATABASE_NAME
+          value: default
+        - name: DATABASE_USER
+          valueFrom:
+            secretKeyRef:
+              key: database-user
+              name: joomla-mysql-persistent
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: database-password
+              name: joomla-mysql-persistent
+        - name: JOOMLA_SECRET_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: joomla-secret-token
+              name: joomla-mysql-persistent
+        - name: JOOMLA_SECURITY_SALT
+          valueFrom:
+            secretKeyRef:
+              key: joomla-security-salt
+              name: joomla-mysql-persistent
+        - name: JOOMLA_SECURITY_CIPHER_SEED
+          valueFrom:
+            secretKeyRef:
+              key: joomla-security-cipher-seed
+              name: joomla-mysql-persistent
+        - name: OPCACHE_REVALIDATE_FREQ
+          value: "2"
+        image: 172.30.47.227:5000/site-ng/joomla-mysql-persistent@sha256:7834f5a706546e380d9c975c3ebd46633495b9d87555be6859febdac8de71cc9
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 3
+        name: joomla-mysql-persistent
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /health.php
+            port: 8080
+            scheme: HTTP
+          initialDelaySeconds: 3
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 3
+        resources:
+          limits:
+            memory: 512Mi
+        terminationMessagePath: /dev/termination-log
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - joomla-mysql-persistent
+      from:
+        kind: ImageStreamTag
+        name: joomla-mysql-persistent:latest
+        namespace: site-ng
+      lastTriggeredImage: 172.30.47.227:5000/site-ng/joomla-mysql-persistent@sha256:7834f5a706546e380d9c975c3ebd46633495b9d87555be6859febdac8de71cc9
+    type: ImageChange
+  - type: ConfigChange
+status:
+  conditions:
+  - lastTransitionTime: 2017-02-16T05:21:53Z
+    message: Deployment config does not have minimum availability.
+    status: "False"
+    type: Available
+  - lastTransitionTime: 2017-02-16T06:29:11Z
+    message: Replication controller "joomla-mysql-persistent-1" has failed progressing
+    reason: ProgressDeadlineExceeded
+    status: "False"
+    type: Progressing
+  details:
+    causes:
+    - imageTrigger:
+        from:
+          kind: ImageStreamTag
+          name: joomla-mysql-persistent:latest
+          namespace: site-ng
+      type: ImageChange
+    message: image change
+  latestVersion: 1
+  observedGeneration: 2

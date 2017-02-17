@@ -1,0 +1,25 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+kind: Project
+metadata:
+  annotations:
+    openshift.io/description: ""
+    openshift.io/display-name: ""
+    openshift.io/requester: lsmwebmaster
+    openshift.io/sa.scc.mcs: s0:c123,c72
+    openshift.io/sa.scc.supplemental-groups: 1015150000/10000
+    openshift.io/sa.scc.uid-range: 1015150000/10000
+  creationTimestamp: 2017-02-16T02:56:07Z
+  name: site-ng
+  resourceVersion: "876563544"
+  selfLink: /oapi/v1/projects/site-ng
+  uid: 7676b682-f3f3-11e6-9704-0ebeb1070c7f
+spec:
+  finalizers:
+  - openshift.io/origin
+  - kubernetes
+status:
+  phase: Active
