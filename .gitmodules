@@ -1,3 +1,16 @@
 [submodule "php"]
 	path = php
 	url = https://github.com/LarSantaMonica/joomla-cms.git
+	branch = lsm_V.0.0.1
+[submodule "lsm_2017_1"]
+	path = php/templates/lsm_2017_1
+	url = https://github.com/LarSantaMonica/joomla_template_lsm_2017.git
+	branch = V.0.0.1
+[submodule "com_roadmapdonation_site"]
+	path = php/components/com_roadmapdonation
+	url = https://github.com/LarSantaMonica/Joomla_component_roadmap_donation_site.git
+	branch = V.0.0.1
+[submodule "com_roadmapdonation_admin"]
+	path = php/administrator/components/com_roadmapdonation
+	url = https://github.com/LarSantaMonica/joomla_component_roadmap_donation_admin.git
+	branch = V.0.0.1
