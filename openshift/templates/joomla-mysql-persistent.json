@@ -5,16 +5,16 @@
     "name": "joomla-mysql-persistent",
     "annotations": {
       "openshift.io/display-name": "Joomla + MySQL (Persistent)",
-      "description": "An Joomla application with a MySQL database. For more information about using this template, including OpenShift considerations, see https://github.com/openshift/site-ng/blob/master/README.md.",
-      "tags": "quickstart,php,joomla",
+      "description": "Site nova geração para o Lar Santa Mônica como Joomla e MySQL. Para mais informações de como usar este template, incluindo detalhes sobre o Openshift favor visitar https://dev.larsantamonica.org.br/site-ng/.",
+      "tags": "larsantamonica, lsm, tecnologianosocial, tns, php, joomla, mysql",
       "iconClass": "icon-php",
-      "template.openshift.io/long-description": "This template defines resources needed to develop a Joomla application, including a build configuration, application deployment configuration, and database deployment configuration.",
-      "template.openshift.io/provider-display-name": "Tecnologia no Social.",
-      "template.openshift.io/documentation-url": "https://github.com/larsantamonica/site-ng",
+      "template.openshift.io/long-description": " ESte template define os recursos necessários para desenvolver o novo site do Lar Santa Mônica sobre o joomla, incluindo configurações de build, configurações do deploy da aplicação, e configurações do deploy do banco de dados, sem deixar de lado o deploy e atualização dos templates.",
+      "template.openshift.io/provider-display-name": "Tecnologia no Social",
+      "template.openshift.io/documentation-url": "https://dev.larsantamonica.org.br/site-ng",
       "template.openshift.io/support-url": "https://dev.larsantamonica.org.br"
     }
   },
-  "message": "The following service(s) have been created in your project: ${NAME}, ${DATABASE_SERVICE_NAME}.\n\nFor more information about using this template, including OpenShift considerations, see https://github.com/LarSantaMonica/site-ng/blob/master/README.md.",
+  "message": "Os seguintes serviços foram criados no projeto: ${NAME}, ${DATABASE_SERVICE_NAME}.\n\n Para mais informações sobre como usar este template, incluindo detalhes sobre o Openshift, visite o site https://dev.larsantamonica.org.br",
   "labels": {
     "template": "joomla-mysql-persistent"
   },
@@ -39,7 +39,7 @@
       "metadata": {
         "name": "${NAME}",
         "annotations": {
-          "description": "Exposes and load balances the application pods",
+          "description": "Esposição e load balance dos pods de aplicação",
           "service.alpha.openshift.io/dependencies": "[{\"name\": \"${DATABASE_SERVICE_NAME}\", \"kind\": \"Service\"}]"
         }
       },
@@ -76,7 +76,7 @@
       "metadata": {
         "name": "${NAME}",
         "annotations": {
-          "description": "Keeps track of changes in the application image"
+          "description": "Mantem o histórico das mudanças nas imagens da aplicação"
         }
       }
     },
@@ -86,7 +86,7 @@
       "metadata": {
         "name": "${NAME}",
         "annotations": {
-          "description": "Defines how to build the application"
+          "description": "Define como a aplicação de ser montada."
         }
       },
       "spec": {
@@ -133,10 +133,7 @@
               "secret": "${GITHUB_WEBHOOK_SECRET}"
             }
           }
-        ],
-        "postCommit": {
-          "script": "./openshift/action_hooks/post_deploy"
-        }
+        ]
       }
     },
     {
@@ -156,7 +153,7 @@
               "failurePolicy": "Retry",
               "execNewPod": {
                 "command": [
-                  "./openshift/action_hooks/build"
+                  "ls"
                 ],
                 "containerName": "joomla-mysql-persistent"
               }
@@ -202,14 +199,6 @@
                     "containerPort": 8080
                   }
                 ],
-                "readinessProbe": {
-                  "timeoutSeconds": 3,
-                  "initialDelaySeconds": 3,
-                  "httpGet": {
-                    "path": "/health.php",
-                    "port": 8080
-                  }
-                },
                 "livenessProbe": {
                   "timeoutSeconds": 3,
                   "initialDelaySeconds": 30,
