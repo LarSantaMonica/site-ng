@@ -15,3 +15,11 @@ Criar Aplicação
 para construir a aplicação
 
 oc start-build joomla-mysql-persistent
+
+Criar uma Doker Image para uso no oPenshift Local
+
+oc cluster up --create-machine
+
+o nome da maquina será openshift
+
+
